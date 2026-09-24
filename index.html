@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maison Tote — Classic Foldable Nylon Tote</title>
+  <style>
+    :root {
+      --bg-cream: #FDFBF7;
+      --text-dark: #1F1F1F;
+      --accent-tan: #C89D7C;
+      --soft-gray: #F3ECE6;
+      --border-color: #E8E2D9;
+      --white: #FFFFFF;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-cream);
+      color: var(--text-dark);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      line-height: 1.5;
+    }
+
+    .site-header {
+      background: var(--white);
+      border-bottom: 1px solid var(--border-color);
+      padding: 16px 24px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand-logo {
+      font-family: 'Georgia', serif;
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--text-dark);
+      text-decoration: none;
+    }
+
+    .cart-icon-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      position: relative;
+      padding: 8px;
+    }
+
+    .cart-badge {
+      position: absolute;
+      top: 2px;
+      right: 2px;
+      background: var(--accent-tan);
+      color: var(--white);
+      font-size: 10px;
+      font-weight: 700;
+      border-radius: 50%;
+      width: 18px;
+      height: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    .main-image-container {
+      background: var(--white);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      overflow: hidden;
+      aspect-ratio: 1 / 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+    }
+
+    .main-image-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: opacity 0.3s ease;
+    }
+
+    .badge {
+      display: inline-block;
+      background: var(--soft-gray);
+      color: var(--accent-tan);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 6px 12px;
+      border-radius: 100px;
+      margin-bottom: 12px;
+    }
+
+    .product-title {
+      font-family: 'Georgia', serif;
+      font-size: 36px;
+      font-weight: 400;
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+
+    .price {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 20px;
+    }
+
+    .description {
+      color: #555555;
+      font-size: 15px;
+      line-height: 1.6;
+      margin-bottom: 28px;
+    }
+
+    .option-label {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .color-swatches {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+
+    .swatch {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 2px solid var(--white);
+      outline: 1px solid var(--border-color);
+      cursor: pointer;
+      transition: transform 0.2s ease, outline-color 0.2s ease;
+    }
+
+    .swatch.active {
+      outline: 2px solid var(--accent-tan);
+      transform: scale(1.1);
+    }
+
+    .btn-add {
+      width: 100%;
+      background: var(--text-dark);
+      color: var(--white);
+      border: none;
+      padding: 18px;
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .btn-add:hover {
+      background: var(--accent-tan);
+    }
+
+    .features-list {
+      margin-top: 32px;
+      border-top: 1px solid var(--border-color);
+      padding-top: 24px;
+      list-style: none;
+    }
+
+    .features-list li {
+      font-size: 14px;
+      color: #444;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .reviews-section {
+      margin-top: 80px;
+      border-top: 1px solid var(--border-color);
+      padding-top: 40px;
+    }
+
+    .reviews-title {
+      font-family: 'Georgia', serif;
+      font-size: 24px;
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .review-card {
+      background: var(--white);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 20px;
+    }
+
+    .review-stars {
+      color: #F5A623;
+      margin-bottom: 8px;
+    }
+
+    .review-text {
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 12px;
+    }
+
+    .review-author {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-dark);
+    }
+
+    .cart-drawer {
+      position: fixed;
+      top: 0;
+      right: -400px;
+      width: 100%;
+      max-width: 380px;
+      height: 100vh;
+      background: var(--white);
+      box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      transition: right 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      padding: 24px;
+    }
+
+    .cart-drawer.open {
+      right: 0;
+    }
+
+    .cart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 16px;
+      margin-bottom: 20px;
+    }
+
+    .close-cart {
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    .cart-items {
+      flex: 1;
+      overflow-y: auto;
+    }
+
+    .cart-item {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .cart-item img {
+      width: 60px;
+      height: 60px;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+
+    .cart-footer {
+      border-top: 1px solid var(--border-color);
+      padding-top: 20px;
+    }
+
+    .checkout-btn {
+      width: 100%;
+      background: var(--accent-tan);
+      color: var(--white);
+      border: none;
+      padding: 16px;
+      font-weight: 700;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: 999;
+      display: none;
+    }
+
+    .overlay.open {
+      display: block;
+    }
+
+    @media (max-width: 768px) {
+      .product-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+      .product-title {
+        font-size: 28px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <a href="#" class="brand-logo">MAISON TOTE</a>
+    <button class="cart-icon-btn" onclick="toggleCart()">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <path d="M16 10a4 4 0 0 1-8 0"></path>
+      </svg>
+      <span class="cart-badge" id="cartCount">0</span>
+    </button>
+  </header>
+
+  <div class="container">
+    <div class="product-grid">
+      
+      <div class="main-image-container">
+        <img id="productImage" src="https://images.unsplash.com/photo-1591561954557-26941169b49e?auto=format&fit=crop&w=800&q=80" alt="Classic Foldable Nylon Tote">
+      </div>
+
+      <div>
+        <span class="badge">Parisian Essential</span>
+        <h1 class="product-title">The Everyday Foldable Tote</h1>
+        <div class="price">€60.00</div>
+        
+        <p class="description">
+          Inspired by timeless French minimalism, this lightweight tote bag is crafted from durable, water-resistant nylon with full-grain leather trims. Extremely spacious, fully foldable, and designed to carry your everyday essentials effortlessly.
+        </p>
+
+        <span class="option-label">Color: <strong id="colorName">Navy Blue</strong></span>
+        <div class="color-swatches">
+          <div class="swatch active" style="background-color: #1B263B;" onclick="selectColor('Navy Blue', 'https://images.unsplash.com/photo-1591561954557-26941169b49e?auto=format&fit=crop&w=800&q=80', this)"></div>
+          <div class="swatch" style="background-color: #2B2D42;" onclick="selectColor('Obsidian Black', 'https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=800&q=80', this)"></div>
+          <div class="swatch" style="background-color: #8D5B4C;" onclick="selectColor('Cognac Brown', 'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=800&q=80', this)"></div>
+          <div class="swatch" style="background-color: #556B2F;" onclick="selectColor('Olive Green', 'https://images.unsplash.com/photo-1614179689702-355944cd0918?auto=format&fit=crop&w=800&q=80', this)"></div>
+        </div>
+
+        <button class="btn-add" onclick="addToCart()">Add to Bag — €60.00</button>
+
+        <ul class="features-list">
+          <li>✓ Ultra-lightweight water-resistant nylon canvas</li>
+          <li>✓ Genuine leather handles and press-stud flap</li>
+          <li>✓ Folds up into the size of a paperback book</li>
+          <li>✓ Free express shipping across Europe</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="reviews-section">
+      <h2 class="reviews-title">Loved Across Europe</h2>
+      <div class="reviews-grid">
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"The quality matches high-end designer totes perfectly. Fits my laptop, water bottle, and daily items easily."</p>
+          <div class="review-author">— Sophie L., Paris</div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Super light and folds so easily for travel. Arrived in 3 days. Highly recommend!"</p>
+          <div class="review-author">— Elena R., Milan</div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Gorgeous color and the leather details feel premium. Worth every cent of €60."</p>
+          <div class="review-author">— Clara M., Berlin</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="overlay" id="overlay" onclick="toggleCart()"></div>
+  <div class="cart-drawer" id="cartDrawer">
+    <div class="cart-header">
+      <h3 style="font-family: Georgia, serif;">Your Shopping Bag</h3>
+      <button class="close-cart" onclick="toggleCart()">&times;</button>
+    </div>
+    <div class="cart-items" id="cartItems">
+      <p style="text-align: center; color: #888; margin-top: 40px;">Your bag is currently empty.</p>
+    </div>
+    <div class="cart-footer">
+      <div style="display: flex; justify-content: space-between; font-weight: 700; margin-bottom: 16px;">
+        <span>Total</span>
+        <span id="cartTotal">€0.00</span>
+      </div>
+      <button class="checkout-btn" onclick="checkout()">Proceed to Checkout</button>
+    </div>
+  </div>
+
+  <script>
+    let selectedColor = 'Navy Blue';
+    let cartQuantity = 0;
+
+    function selectColor(color, imageUrl, element) {
+      selectedColor = color;
+      document.getElementById('colorName').innerText = color;
+      document.getElementById('productImage').src = imageUrl;
+
+      const swatches = document.querySelectorAll('.swatch');
+      swatches.forEach(swatch => swatch.classList.remove('active'));
+      element.classList.add('active');
+    }
+
+    function toggleCart() {
+      document.getElementById('cartDrawer').classList.toggle('open');
+      document.getElementById('overlay').classList.toggle('open');
+    }
+
+    function addToCart() {
+      cartQuantity += 1;
+      document.getElementById('cartCount').innerText = cartQuantity;
+      
+      const cartItemsContainer = document.getElementById('cartItems');
+      cartItemsContainer.innerHTML = `
+        <div class="cart-item">
+          <img src="${document.getElementById('productImage').src}" alt="Tote Bag">
+          <div>
+            <div style="font-weight: 700; font-size: 14px;">The Everyday Foldable Tote</div>
+            <div style="font-size: 12px; color: #666;">Color: ${selectedColor}</div>
+            <div style="font-weight: 700; margin-top: 4px;">€60.00 x ${cartQuantity}</div>
+          </div>
+        </div>
+      `;
+
+      document.getElementById('cartTotal').innerText = `€${(cartQuantity * 60).toFixed(2)}`;
+      toggleCart();
+    }
+
+    function checkout() {
+      if (cartQuantity === 0) {
+        alert("Your shopping bag is empty!");
+        return;
+      }
+      alert("Redirecting to secure payment checkout...");
+    }
+  </script>
+</body>
+</html>
